@@ -1,0 +1,27 @@
+.button {
+  @apply py-3 px-5 rounded-lg primary-gradient
+    text-[#D06E14] font-bold text-xl transition-all duration-300 ease-in-out;
+  box-shadow: -1px 3px 0 #b23909;
+}
+.button:hover {
+  @apply text-brown-700;
+  box-shadow: 0 2.5px 0 #b23909;
+}
+.button.secondary {
+  @apply secondary-gradient text-[#EFA145];
+  box-shadow: -1px 3px 0 #7D2A07;
+}
+.button.secondary:hover {
+  @apply text-brown-800;
+  box-shadow: 0 2.5px 0 #7d2a07;
+}
+.button.gray {
+  @apply gray-gradient text-gray-700;
+  box-shadow: -1px 3px 0 #434343;
+}
+.button.gray:hover {
+  box-shadow: 0 2.5px 0 #434343;
+}
+.button.circle {
+  @apply rounded-full py-3 px-3;
+}/*# sourceMappingURL=Button.module.css.map */
