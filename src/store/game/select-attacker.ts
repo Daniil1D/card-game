@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 interface IUseSelectAttacker {
-    cardAttackerId: number | null
-    setCardAttackerId: (id: number | null) => void
+    cardAttackerId: string | null
+    setCardAttackerId: (id: string | null) => void
 }
 
 export const useSelectAttacker = create<IUseSelectAttacker>(set => ({

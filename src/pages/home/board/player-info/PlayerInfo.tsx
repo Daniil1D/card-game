@@ -4,6 +4,7 @@ import { Badge } from "../../../../components/ui/Badge";
 import { MAX_HP } from "../../../../constants/game/core.constants";
 import { useEnemyTarget } from "../board-card/useEnemyTarget";
 import { useGameStore } from "../../../../store/game/game.store";
+import { DamageList } from "../DamageList";
 
 interface Props {
   player: Omit<IHero, "deck">;
@@ -15,7 +16,7 @@ export function PlayerInfo({ player, typePlayer }: Props) {
   const { currentTurn } = useGameStore();
   return (
     <button
-      className={cn("absolute", {
+      className={cn("absolute z-[1]", {
         "bottom-0": isPlayer,
         "right-6 top-2": !isPlayer,
       })}
@@ -36,8 +37,9 @@ export function PlayerInfo({ player, typePlayer }: Props) {
           isPlayer ? "bottom-4" : "bottom-5",
         )}
       >
-        <Badge value={player.health} maxValue={MAX_HP} color={"red"} />
+        {/* <Badge value={player.health} maxValue={MAX_HP} color={"red"} /> */}
       </div>
+      <DamageList id={typePlayer} isRight={isPlayer} />
     </button>
   );
 }

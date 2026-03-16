@@ -1,13 +1,11 @@
 import { MAX_HAND_CARDS } from "../../../constants/game/core.constants";
-import type { IGameCard, IGameStore } from "../game.types";
+import type { IGameCard, IHero } from "../game.types";
 
 
-export const drawCardsAction = ( state: IGameStore ) => {
-    const currentPlayer = state.currentTurn === "player" ? state.player : state.opponent;
+export const drawCardsAction = ( currentPlayer: IHero ) => {
+    const currentOnHand = currentPlayer.deck.filter(card => card.isOnHand).length
 
-    const cardOnHands = currentPlayer.deck.filter(card => card.isOnHand).length
-
-    const cardsNeeded = MAX_HAND_CARDS - cardOnHands
+    const cardsNeeded = MAX_HAND_CARDS - currentOnHand
 
     let drawCards = 0
     const updatedDeck = currentPlayer.deck.map((card: IGameCard) => {
@@ -17,7 +15,6 @@ export const drawCardsAction = ( state: IGameStore ) => {
         }
         return card
     })
-
 
     return { updatedDeck }
 }

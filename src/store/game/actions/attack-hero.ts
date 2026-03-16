@@ -1,43 +1,61 @@
+import { MAX_HP } from "../../../constants/game/core.constants";
 import { useNotificationStore } from "../../notification/notification.store";
+import { useDamageStore } from "../damage.store";
 import type { IGameStore } from "../game.types";
 import { getCardById } from "./attack-card";
 
 export const attackHeroAction = (
-    state: IGameStore, 
-    attackerId: number, 
+    state: IGameStore,
+    attackerId: string,
 ): Partial<IGameStore> => {
     const isAttackerPlayer = state.currentTurn === 'player'
-    const opponent = state[isAttackerPlayer ? 'opponent' : 'player']
+    const opponent = isAttackerPlayer ? state.opponent : state.player
 
     const attacker = getCardById(
-        attackerId, 
+        attackerId,
         isAttackerPlayer ? state.player.deck : state.opponent.deck
     )
 
-    const opponentTaunt = opponent.deck.find(card => card.type === "taunt" && card.isOnBoard)
+    const opponentCardInFront = opponent.deck.find(
+        card => card.isOnBoard && card.boardIndex === attacker?.boardIndex
+    );
 
-    if(attacker && attacker.isCanAttack && !opponentTaunt) {
-        opponent.health -= attacker.attack
-        attacker.isCanAttack = false
+    if(attacker && attacker.isCanAttack && !opponentCardInFront) {
 
-        if(opponent.health <= 0) {
-            state.isGameOver = true
-            state.isGameStarted = false 
-
-             useNotificationStore
-                .getState()
-                .show(
-                    isAttackerPlayer ? 'Ты выйграл' : 'Ты проиграл', 
-                    isAttackerPlayer ? 'win' : 'lose'
-                )
+        if (isAttackerPlayer) {
+            state.damageBalance += attacker.attack
+        } else {
+            state.damageBalance -= attacker.attack
         }
 
+        attacker.isCanAttack = false
+
+        useDamageStore.getState().addDamage(isAttackerPlayer ? 'opponent' : 'player', attacker.attack)
+
+        if (state.damageBalance >= MAX_HP) {
+            state.isGameOver = true
+            state.isGameStarted = false
+
+            useNotificationStore
+                .getState()
+                .show('Ты выйграл', 'win')
+        }
+
+        if (state.damageBalance <= -6) {
+            state.isGameOver = true
+            state.isGameStarted = false
+
+            useNotificationStore
+                .getState()
+                .show('Ты проиграл', 'lose')
+        }
     }
 
-    return { 
-        player: state.player, 
-        opponent: state.opponent, 
-        isGameOver: state.isGameOver, 
+    return {
+        player: state.player,
+        opponent: state.opponent,
+        damageBalance: state.damageBalance,
+        isGameOver: state.isGameOver,
         isGameStarted: state.isGameStarted
     }
 }

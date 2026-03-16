@@ -9,13 +9,11 @@ export default function EndTurnButton() {
   return (
     <Button
       className="absolute -top-[30px] right-4 z-10"
-      onClick={endTurn}
-      variant="primary"
-      // onClick={isOpponentTurn ? () => null : endTurn}
-      // variant={isOpponentTurn ? "disabled" : "primary"}
-      // disabled={isOpponentTurn}
+      onClick={isOpponentTurn ? () => null : endTurn}
+      variant={isOpponentTurn ? "disabled" : "primary"}
+      disabled={isOpponentTurn}
     >
-      Конец хода
+      {isOpponentTurn ? "ход противника" : "конец хода"}
     </Button>
   );
 }

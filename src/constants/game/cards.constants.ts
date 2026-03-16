@@ -5,19 +5,19 @@ export const CARDS: ICard[] = [
   // 🧑 Humans
   { name: "Peasant", mana: 1, attack: 1, health: 2, imageUrl: '/assets/cards/peasant.jpg' },
 
-  { name: "Village Guard", mana: 2, attack: 1, health: 4, type: "taunt", imageUrl: '/assets/cards/village-guard.png' },
+  { name: "Village Guard", mana: 2, attack: 1, health: 4, imageUrl: '/assets/cards/village-guard.png' },
 
   { name: "Hunter", mana: 3, attack: 2, health: 2, imageUrl: '/assets/cards/hunter.png' },
 
-  { name: "Bandit", mana: 4, attack: 2, health: 3, type: "charge", imageUrl: '/assets/cards/bandit.png' },
+  { name: "Bandit", mana: 4, attack: 2, health: 3, imageUrl: '/assets/cards/bandit.png' },
 
   { name: "Spearman", mana: 3, attack: 4, health: 3, imageUrl: '/assets/cards/spearman.png' },
 
   { name: "Swordsman", mana: 4, attack: 4, health: 4, imageUrl: '/assets/cards/swordsman.png' },
 
-  { name: "Heavy Knight", mana: 3, attack: 7, health: 5, type: "taunt", imageUrl: '/assets/cards/heavy-knight.png' },
+  { name: "Heavy Knight", mana: 3, attack: 7, health: 5, imageUrl: '/assets/cards/heavy-knight.png' },
 
-  { name: "Royal Guard", mana: 5, attack: 5, health: 6, type: "taunt", imageUrl: '/assets/cards/royal-guard.png' },
+  { name: "Royal Guard", mana: 5, attack: 5, health: 6, imageUrl: '/assets/cards/royal-guard.png' },
 
   { name: "Kingdom Hero", mana: 6, attack: 6, health: 7, type: "legendary", imageUrl: '/assets/cards/kingdom-hero.png' },
 
@@ -72,9 +72,11 @@ export const CARDS: ICard[] = [
 
   // { name: "Crocodile", mana: 5, attack: 4, health: 4, imageUrl: '/assets/cards/crocodile.png' },
 
-  // { name: "Bear", mana: 6, attack: 6, health: 5, imageUrl: '/assets/cards/bear.png' },
+  { name: "Bear", mana: 6, attack: 6, health: 5, imageUrl: '/assets/cards/bear.png' },
 
-  // { name: "Moose", mana: 5, attack: 7, health: 5, imageUrl: '/assets/cards/moose.png' },
+  { name: "Moose", mana: 5, attack: 7, health: 5, imageUrl: '/assets/cards/moose.png' },
+
+  { name: "Bison", mana: 5, attack: 6, health: 7, imageUrl: '/assets/cards/bison.png' },
 
   // 🦂 Rare creatures
   // { name: "Black Wolf", mana: 6, attack: 4, health: 5, type: "berserk", imageUrl: '/assets/cards/black-wolf.png' },
@@ -85,7 +87,9 @@ export const CARDS: ICard[] = [
 
   { name: "Eagle", mana: 5, attack: 4, health: 4, type: "flying", imageUrl: '/assets/cards/eagle.png' },
 
-  // { name: "Giant Spider", mana: 5, attack: 5, health: 4, type: "spawn", imageUrl: '/assets/cards/giant-spider.png' },
+  { name: "Giant Spider", mana: 5, attack: 5, health: 4, type: "spawn", imageUrl: '/assets/cards/giant-spider.png' },
+
+  { name: "Scorpion", mana: 3, attack: 5, health: 3, type: "spawn", imageUrl: '/assets/cards/scorpion.png' },
 
   // 🩸 Sacrifice helper
   // { name: "Sacrificial Creature", mana: 0, attack: 0, health: 1, type: "sacrifice", imageUrl: '/assets/cards/sacrificial-creature.png' },

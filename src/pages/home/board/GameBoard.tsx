@@ -7,29 +7,32 @@ import { AudioPlayer } from "./audi-player/AudioPlayer";
 import EndTurnButton from "./EndTurnButton";
 import { SectionSide } from "./SectionSide";
 import { GridBoardCards } from "./board-card/GridBoardCards";
+import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
+import { DamageScale } from "./DamageScale";
 
 export function GameBoard() {
-  const { player, opponent, playCard } = useGameStore();
+  const { player, opponent, currentTurn } = useGameStore();
+  const { toggleSelectedCardId } = useSelectedHandCard();
 
-  const playerHand = player.deck
-    .filter((card) => card.isOnHand)
+  const playerHand = player.deck.filter((card) => card.isOnHand);
 
-  const opponentHand = opponent.deck
-    .filter((card) => card.isOnHand)
-    
+  // const opponentHand = opponent.deck.filter((card) => card.isOnHand);
+
   return (
     <div className="relative h-screen w-full">
       {/* верхняя часть */}
       <SectionSide isPlayer={false}>
         <div>
           <PlayerInfo player={opponent} typePlayer="opponent" />
-          <PlayerMana
+          {/* <PlayerMana
             currentMana={opponent.mana}
             maxMana={MAX_MANA}
             typePlayer="opponent"
-          />
+          /> */}
 
-          <div className="absolute -top-[8vh] w-full">
+          <DamageScale />
+
+          {/* <div className="absolute -top-[8vh] w-full">
             <div className="flex items-center justify-center">
               {opponentHand.map((card, index, array) => (
                 <HandCard
@@ -40,16 +43,20 @@ export function GameBoard() {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* preview */}
-          <div className="flex gap-3 items-center justify-center mt-[4vh]">
-            <GridBoardCards isPlayerSide={false}/>
+          <div className="flex gap-3 items-center justify-center">
+            <GridBoardCards
+              deck={opponent.deck}
+              isPlayerSide={false}
+              isPreviewRow
+            />
           </div>
 
           {/* opponent board */}
           <div className="flex gap-3 pb-5 mt-1 items-center justify-center">
-            <GridBoardCards deck={opponent.deck} isPlayerSide={false}/>
+            <GridBoardCards deck={opponent.deck} isPlayerSide={false} />
           </div>
         </div>
       </SectionSide>
@@ -62,7 +69,7 @@ export function GameBoard() {
       <SectionSide isPlayer>
         {/* player board */}
         <div className="flex gap-3 items-center justify-center">
-          <GridBoardCards deck={player.deck} isPlayerSide={true}/>
+          <GridBoardCards deck={player.deck} isPlayerSide={true} />
         </div>
 
         <PlayerInfo player={player} typePlayer="player" />
@@ -82,8 +89,14 @@ export function GameBoard() {
                 key={card.id}
                 card={card}
                 arrayLength={array.length}
-                onClick={() => playCard(card.id)}
-                isDisabled={player.mana < card.mana}
+                onClick={() => {
+                  if (currentTurn === "player") {
+                    toggleSelectedCardId(card.id);
+                  }
+                }}
+                isDisabled={
+                  player.mana < card.mana || currentTurn === "opponent"
+                }
               />
             ))}
           </div>

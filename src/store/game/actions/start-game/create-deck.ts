@@ -1,13 +1,14 @@
 import { CARDS } from "../../../../constants/game/cards.constants";
-import type { IGameCard } from "../../game.types";
+import type { IGameCard, TPlayer } from "../../game.types";
 
-export function createDeck(): IGameCard[] {
+export function createDeck(typePlayer: TPlayer): IGameCard[] {
     return CARDS.map((card, index) => ({
         ...card,
-        id: index + 1,
+        id: index + 1 + '_' + typePlayer,
         isTaken: false,
         isOnHand: false,
         isOnBoard: false,
-        isCanAttack: false
+        isCanAttack: false,
+        isPlayedThisTurn: false
     }))
 }
