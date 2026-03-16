@@ -14,7 +14,8 @@ export interface IGameCard extends ICard {
 export interface IHero {
     health: number;
     mana: number;
-    deck: IGameCard[] 
+    deck: IGameCard[];
+    squirrelDeck: IGameCard[]
 }
 
 export interface IGameFnStore {
@@ -24,6 +25,8 @@ export interface IGameFnStore {
     returnCard: (cardId: string) => void
     attackCard: (attackerId: string, targetId: string) => void
     attackHero: (attackerId: string) => void
+    drawFromMainDeck: () => void
+    drawFromSquirrelDeck: () => void
 }
 
 export interface IGameStore extends IGameFnStore {
@@ -33,9 +36,9 @@ export interface IGameStore extends IGameFnStore {
     currentTurn: TPlayer
     isGameOver: boolean
     turn: number
-
     attackingCardId: string | null
     setAttackingCardId: (id: string | null) => void
-
     damageBalance: number
+
+    hasDrawnThisTurn: boolean
 }

@@ -21,7 +21,6 @@ export const attackCardAction = (
     isAttackerPlayer ? state.opponent.deck : state.player.deck
   );
 
-  // ❗ проверка что карты в одной линии
   if (
     attacker &&
     target &&

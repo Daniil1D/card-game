@@ -16,7 +16,6 @@ export function DamageScale() {
   return (
     <div className="flex items-center justify-center gap-3 select-none">
 
-      {/* opponent side */}
       <div className="flex gap-1">
         {cells.map((_, i) => (
           <div
@@ -31,12 +30,10 @@ export function DamageScale() {
         ))}
       </div>
 
-      {/* центр весов */}
       <div className="text-2xl">
         ⚖️
       </div>
 
-      {/* player side */}
       <div className="flex gap-1">
         {cells.map((_, i) => (
           <div

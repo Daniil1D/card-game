@@ -11,10 +11,20 @@ import { useSelectedHandCard } from "../../../store/game/selected-hand-card.stor
 import { DamageScale } from "./DamageScale";
 
 export function GameBoard() {
-  const { player, opponent, currentTurn } = useGameStore();
+  const {
+    player,
+    opponent,
+    currentTurn,
+    drawFromMainDeck,
+    drawFromSquirrelDeck,
+  } = useGameStore();
+
   const { toggleSelectedCardId } = useSelectedHandCard();
 
-  const playerHand = player.deck.filter((card) => card.isOnHand);
+  const playerHand = [
+    ...player.deck,
+    ...player.squirrelDeck
+  ].filter(card => card.isOnHand)
 
   // const opponentHand = opponent.deck.filter((card) => card.isOnHand);
 
@@ -45,7 +55,6 @@ export function GameBoard() {
             </div>
           </div> */}
 
-          {/* preview */}
           <div className="flex gap-3 items-center justify-center">
             <GridBoardCards
               deck={opponent.deck}
@@ -54,7 +63,6 @@ export function GameBoard() {
             />
           </div>
 
-          {/* opponent board */}
           <div className="flex gap-3 pb-5 mt-1 items-center justify-center">
             <GridBoardCards deck={opponent.deck} isPlayerSide={false} />
           </div>
@@ -67,7 +75,6 @@ export function GameBoard() {
       </div>
 
       <SectionSide isPlayer>
-        {/* player board */}
         <div className="flex gap-3 items-center justify-center">
           <GridBoardCards deck={player.deck} isPlayerSide={true} />
         </div>
@@ -81,7 +88,34 @@ export function GameBoard() {
 
         <AudioPlayer />
 
-        {/* рука игрока */}
+        <div className="flex justify-start gap-6 absolute left-[250px]">
+          <button
+            onClick={() => {
+              if (currentTurn === "player") {
+                drawFromMainDeck();
+              }
+            }}
+            className=" w-[90px] h-[140px] border-2  border-yellow-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg">
+            <img
+              src="/assets/cards/cover2.png"
+              className="w-full h-full object-cover"
+            />
+          </button>
+
+          <button
+            onClick={() => {
+              if (currentTurn === "player") {
+                drawFromSquirrelDeck();
+              }
+            }}
+            className="w-[90px] h-[140px] border-2  border-green-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg">
+            <img
+              src="/assets/cards/squirrel.png"
+              className="w-full h-full object-cover"
+            />
+          </button>
+        </div>
+
         <div className="absolute -bottom-[5px] w-full">
           <div className="flex items-center justify-center">
             {playerHand.map((card, index, array) => (

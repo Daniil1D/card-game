@@ -4,16 +4,18 @@ export const initialPlayerData: IHero = {
     health: 20,
     mana: 1,
     deck: [],
+    squirrelDeck: []
 }
 
 export const initiaGameData: Omit<IGameStore, keyof IGameFnStore> = {
     player: initialPlayerData,
     opponent: initialPlayerData,
-    currentTurn: "player",
+    currentTurn: "opponent",
     isGameOver: false,
     isGameStarted: true,
     turn: 1,
     attackingCardId: null,
     setAttackingCardId: () => {},
-    damageBalance: 0
+    damageBalance: 0,
+    hasDrawnThisTurn: false
 }

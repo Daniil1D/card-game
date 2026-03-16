@@ -1,30 +1,56 @@
 import type { IGameStore } from "../game.types";
 
-export const playCardAction = (state: IGameStore, cardId: string, boardIndex: number)=> {
+export const playCardAction = (state: IGameStore, cardId: string, boardIndex: number) => {
     const isPlayerTurn = state.currentTurn === "player"
     const currentPlayer = isPlayerTurn ? state.player : state.opponent;
 
-    const currentCardIndex = currentPlayer.deck.findIndex(
+    let currentCardIndex = currentPlayer.deck.findIndex(
         card => card.id === cardId
     )
 
-    const currentCard = currentPlayer.deck[currentCardIndex]
+    let currentCard = currentPlayer.deck[currentCardIndex]
 
-    if(currentCard && currentPlayer.mana >= currentCard?.mana) {
-        currentCard.boardIndex = boardIndex;
-        currentCard.isOnBoard = true;//положить карту на доску
-        currentCard.isPlayedThisTurn = true;//установить флаг
-        currentCard.isOnHand = false;//убрать карту из руки
-        currentCard.isCanAttack = true;//разрешить сразу атаку
-        
-        currentPlayer.mana -= currentCard.mana;//уменьшить количество маны
+    let isSquirrelCard = false
 
-        currentPlayer.deck.splice(currentCardIndex, 1)//убрать карту из колоды
-        currentPlayer.deck.push(currentCard)//добавить карту в колоду
+    if (!currentCard) {
+        currentCardIndex = currentPlayer.squirrelDeck.findIndex(
+            card => card.id === cardId
+        )
+
+        currentCard = currentPlayer.squirrelDeck[currentCardIndex]
+
+        if (currentCard) {
+            isSquirrelCard = true
+        }
     }
 
-    return { 
-        player: isPlayerTurn ? currentPlayer : state.player, 
-        opponent: isPlayerTurn ? state.opponent : currentPlayer 
+    if (!currentCard) {
+        return state
+    }
+
+    if (currentPlayer.mana >= currentCard.mana) {
+
+        currentCard.boardIndex = boardIndex
+        currentCard.isOnBoard = true
+        currentCard.isPlayedThisTurn = true
+        currentCard.isOnHand = false
+        currentCard.isCanAttack = true
+
+        currentPlayer.mana -= currentCard.mana
+
+        if (!isSquirrelCard) {
+            currentPlayer.deck.splice(currentCardIndex, 1)
+            currentPlayer.deck.push(currentCard)
+        }
+
+        if (isSquirrelCard) {
+            currentPlayer.squirrelDeck.splice(currentCardIndex, 1)
+            currentPlayer.deck.push(currentCard)
+        }
+    }
+
+    return {
+        player: isPlayerTurn ? currentPlayer : state.player,
+        opponent: isPlayerTurn ? state.opponent : currentPlayer
     }
 };
