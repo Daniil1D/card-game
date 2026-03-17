@@ -17,5 +17,6 @@ export const initiaGameData: Omit<IGameStore, keyof IGameFnStore> = {
     attackingCardId: null,
     setAttackingCardId: () => {},
     damageBalance: 0,
-    hasDrawnThisTurn: false
+    hasDrawnThisTurn: false,
+    sacrificedThisTurn: false
 }

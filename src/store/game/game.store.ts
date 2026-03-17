@@ -10,6 +10,7 @@ import { startGameAction } from "./actions/start-game/start-game";
 import { randomOpponentPlay } from "./actions/opponent-core-game/random-opponent-play";
 import { drawFromMainDeckAction } from "./actions/draw-from-main-deck";
 import { drawFromSquirrelDeckAction } from "./actions/draw-from-squirrel-deck";
+import { sacrificeCardAction } from "./actions/sacrifice-card";
 
 const useGameStore = create<IGameStore>((set) => ({
     ...initiaGameData,
@@ -50,6 +51,9 @@ const useGameStore = create<IGameStore>((set) => ({
     },
     returnCard: (cardId: string) => {
         set((state) => returnCardAction(state, cardId))
+    },
+    sacrificeCard: (cardId: string) => {
+        set(state => sacrificeCardAction(state, cardId))
     },
     attackCard: (attackerId: string, targetId: string) => {
         set({ attackingCardId: attackerId })

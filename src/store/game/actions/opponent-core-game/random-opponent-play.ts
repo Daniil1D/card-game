@@ -3,11 +3,21 @@ import { attackCardAction } from "../attack-card";
 import { PlayRandomCard } from "./play-random-card";
 import { MAX_MANA } from "../../../../constants/game/core.constants";
 import { attackHeroAction } from "../attack-hero";
-import { drawCardsAction } from "../draw-cards";
 
+function drawOneCardForOpponent(state: IGameStore) {
+  const deck = state.opponent.deck;
+
+  const card = deck.find(c => !c.isTaken);
+
+  if (!card) return;
+
+  card.isTaken = true;
+  card.isOnHand = true;
+}
 
 export const randomOpponentPlay = (state: IGameStore) => {
-  const { updatedDeck } = drawCardsAction(state.opponent);
+  drawOneCardForOpponent(state);
+
   const opponent = state.opponent;
 
   opponent.deck
@@ -15,7 +25,14 @@ export const randomOpponentPlay = (state: IGameStore) => {
     .forEach((card) => {
 
       if (!state.player.deck.filter((card) => card.isOnBoard).length) {
-        state = { ...state, ...attackHeroAction(state, card.id) };
+
+        const heroAttackResult = attackHeroAction(state, card.id)
+
+        state = {
+          ...state,
+          ...heroAttackResult
+        }
+
         return;
       }
 
@@ -25,25 +42,33 @@ export const randomOpponentPlay = (state: IGameStore) => {
           playerCard.boardIndex === card.boardIndex
       );
 
-
       if (target) {
+
+        const attackResult = attackCardAction(state, card.id, target.id)
+
         state = {
           ...state,
-          ...attackCardAction(state, card.id, target.id),
-        };
+          ...attackResult
+        }
+
       } else {
 
+        const heroAttackResult = attackHeroAction(state, card.id)
+
         state = {
           ...state,
-          ...attackHeroAction(state, card.id),
-        };
+          ...heroAttackResult
+        }
+
       }
     });
 
   let mana = opponent.mana;
+
   let iterations = 0;
 
   while (mana > 0 && iterations <= MAX_MANA) {
+
     const newState = PlayRandomCard(state, mana);
 
     mana = newState.opponent.mana;
@@ -58,7 +83,6 @@ export const randomOpponentPlay = (state: IGameStore) => {
     opponent: {
       ...state.opponent,
       mana: 0,
-      deck: updatedDeck
     },
   };
 };

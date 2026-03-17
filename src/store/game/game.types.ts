@@ -27,6 +27,7 @@ export interface IGameFnStore {
     attackHero: (attackerId: string) => void
     drawFromMainDeck: () => void
     drawFromSquirrelDeck: () => void
+    sacrificeCard: (cardId: string) => void
 }
 
 export interface IGameStore extends IGameFnStore {
@@ -39,6 +40,6 @@ export interface IGameStore extends IGameFnStore {
     attackingCardId: string | null
     setAttackingCardId: (id: string | null) => void
     damageBalance: number
-
     hasDrawnThisTurn: boolean
+    sacrificedThisTurn: boolean
 }

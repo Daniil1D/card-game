@@ -41,7 +41,7 @@ export const attackHeroAction = (
                 .show('Ты выйграл', 'win')
         }
 
-        if (state.damageBalance <= -6) {
+        if (state.damageBalance <= -MAX_HP) {
             state.isGameOver = true
             state.isGameStarted = false
 

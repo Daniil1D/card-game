@@ -40,12 +40,11 @@ export const endTurnAction = (state: IGameStore): Partial<IGameStore> => {
     let newOpponentMana = state.opponent.mana
 
     if(isNewTurnPlayer) {
-        newPlayerMana = getNewMana(newTurnNumber)
+        newPlayerMana = state.player.mana
         useNotificationStore.getState().show('Ваш ход')
     } else {
         newOpponentMana = getNewMana(newTurnNumber)
     }
-
 
     const updatedState = {
         ...state,
@@ -65,6 +64,8 @@ export const endTurnAction = (state: IGameStore): Partial<IGameStore> => {
 
     return {
         ...updatedState,
-        hasDrawnThisTurn: false
+        hasDrawnThisTurn: false,
+
+        sacrificedThisTurn: false
     }
 }

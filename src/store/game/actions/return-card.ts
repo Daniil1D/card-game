@@ -6,7 +6,7 @@ export const returnCardAction = (state: IGameStore, cardId: string): Partial<IGa
 
     const currentCard = currentPlayer.deck.find(card => card.id === cardId);
 
-    if(currentCard && currentCard.isOnBoard) {
+    if(currentCard && currentCard.isOnBoard && currentCard.isCanAttack) {
         currentCard.isOnBoard = false;
         currentCard.isOnHand = true;
         currentPlayer.mana += currentCard.mana;

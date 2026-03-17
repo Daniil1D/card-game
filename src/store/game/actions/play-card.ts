@@ -28,6 +28,17 @@ export const playCardAction = (state: IGameStore, cardId: string, boardIndex: nu
         return state
     }
 
+    if (currentCard.isOnBoard) {
+        return state
+    }
+
+    const isBoardSlotTaken = currentPlayer.deck.some(
+        card => card.isOnBoard && card.boardIndex === boardIndex
+    )
+    if (isBoardSlotTaken) {
+        return state
+    }
+
     if (currentPlayer.mana >= currentCard.mana) {
 
         currentCard.boardIndex = boardIndex

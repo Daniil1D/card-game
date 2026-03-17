@@ -23,7 +23,7 @@ export function BordCard({
   isAttackTarget
 }: Props) {
   const { handleSelectTarget } = useEnemyTarget();
-  const { returnCard, currentTurn, attackingCardId } = useGameStore();
+  const { returnCard, currentTurn, attackingCardId, sacrificeCard } = useGameStore();
 
   const { cardAttackerId, setCardAttackerId } = useSelectAttacker();
 
@@ -55,11 +55,24 @@ export function BordCard({
     }
   };
 
+  const handleRightClick = (event: React.MouseEvent, cardId?: string) => {
+    event.preventDefault();
+
+    if (!cardId) return;
+    if (!isPlayerSide) return;
+    if (currentTurn !== "player") return;
+    if (!card) return;
+    if (!card.isOnBoard) return;
+
+    sacrificeCard(cardId);
+  };
+
   const isPlayerSelectAttacker = isPlayerSide && cardAttackerId === card?.id;
 
   return (
     <motion.button
       onClick={() => handleClick(card?.id)}
+      onContextMenu={(e) => handleRightClick(e, card?.id)}
       className={
         card
           ? cn("w-[100px] h-[160px] rounded-lg relative overflow-hidden", {

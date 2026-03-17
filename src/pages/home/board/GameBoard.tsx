@@ -30,15 +30,14 @@ export function GameBoard() {
 
   return (
     <div className="relative h-screen w-full">
-      {/* верхняя часть */}
       <SectionSide isPlayer={false}>
         <div>
           <PlayerInfo player={opponent} typePlayer="opponent" />
-          {/* <PlayerMana
+          <PlayerMana
             currentMana={opponent.mana}
             maxMana={MAX_MANA}
             typePlayer="opponent"
-          /> */}
+          />
 
           <DamageScale />
 

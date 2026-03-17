@@ -9,6 +9,7 @@ export const attackCardAction = (
   attackerId: string,
   targetId: string
 ) => {
+
   const isAttackerPlayer = state.currentTurn === "player";
 
   const attacker = getCardById(
@@ -31,14 +32,76 @@ export const attackCardAction = (
 
   if (attacker && target && attacker.isCanAttack) {
 
-    target.health -= attacker.attack;
+    const damage = attacker.attack;
 
+    const targetHealthBefore = target.health;
 
-    useDamageStore.getState().addDamage(targetId, attacker.attack);
+    target.health -= damage;
+
+    useDamageStore.getState().addDamage(targetId, damage);
 
     attacker.isCanAttack = false;
 
+    if (damage > targetHealthBefore) {
+
+      const overflowDamage = damage - targetHealthBefore;
+
+      const enemy = isAttackerPlayer ? state.opponent : state.player;
+
+      if (!isAttackerPlayer) {
+
+        state.damageBalance -= overflowDamage;
+
+        useDamageStore.getState().addDamage(
+          "player",
+          overflowDamage
+        );
+
+      } else {
+
+        const frontCard = enemy.deck.find(
+          card =>
+            card.previewBoardIndex !== undefined &&
+            card.previewBoardIndex === attacker.boardIndex
+        );
+
+        if (frontCard) {
+
+          frontCard.health -= overflowDamage;
+
+          useDamageStore.getState().addDamage(frontCard.id, overflowDamage);
+
+          if (frontCard.health <= 0) {
+
+            const remainingDamage = Math.abs(frontCard.health);
+
+            enemy.deck = enemy.deck.filter(card => card.id !== frontCard.id);
+
+            if (remainingDamage > 0) {
+
+              state.damageBalance += remainingDamage;
+
+              useDamageStore.getState().addDamage(
+                "opponent",
+                remainingDamage
+              );
+            }
+          }
+
+        } else {
+
+          state.damageBalance += overflowDamage;
+
+          useDamageStore.getState().addDamage(
+            "opponent",
+            overflowDamage
+          );
+        }
+      }
+    }
+
     if (target.health <= 0) {
+
       if (isAttackerPlayer) {
         state.opponent.deck = state.opponent.deck.filter(
           (card) => card.id !== targetId
@@ -51,6 +114,7 @@ export const attackCardAction = (
     }
 
     if (attacker.health <= 0) {
+
       if (isAttackerPlayer) {
         state.player.deck = state.player.deck.filter(
           (card) => card.id !== attackerId
