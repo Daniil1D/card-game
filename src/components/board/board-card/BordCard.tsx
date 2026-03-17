@@ -1,11 +1,11 @@
-import { useGameStore } from "../../../../store/game/game.store";
-import type { IGameCard } from "../../../../store/game/game.types";
+import { useGameStore } from "../../../store/game/game.store";
+import type { IGameCard } from "../../../store/game/game.types";
 import cn from "clsx";
 import { useEnemyTarget } from "./useEnemyTarget";
-import { useSelectAttacker } from "../../../../store/game/select-attacker";
+import { useSelectAttacker } from "../../../store/game/select-attacker";
 import { motion } from "framer-motion";
-import { DamageList } from "../DamageList";
-import { CardAbilityIcon } from "../../../../components/ui/card-ability-icon/CardAbilityIcon";
+import { DamageList } from "../../../pages/home/board/DamageList";
+import { CardAbilityIcon } from "../../ui/card-ability-icon/CardAbilityIcon";
 
 interface Props {
   card?: IGameCard;
@@ -21,10 +21,11 @@ export function BordCard({
   isPlayerSide,
   canPlaceCard,
   onPlaceCard,
-  isAttackTarget
+  isAttackTarget,
 }: Props) {
   const { handleSelectTarget } = useEnemyTarget();
-  const { returnCard, currentTurn, attackingCardId, sacrificeCard } = useGameStore();
+  const { returnCard, currentTurn, attackingCardId, sacrificeCard } =
+    useGameStore();
 
   const { cardAttackerId, setCardAttackerId } = useSelectAttacker();
 
@@ -38,18 +39,14 @@ export function BordCard({
 
     if (isPlayerSide) {
       if (card?.isCanAttack && cardId !== undefined) {
-
-        if(cardAttackerId == cardId) {
-          setCardAttackerId(null)
-          return
+        if (cardAttackerId == cardId) {
+          setCardAttackerId(null);
+          return;
         }
 
         setCardAttackerId(cardId);
-
       } else if (card?.isPlayedThisTurn) {
-
         if (cardId) returnCard(cardId);
-        
       }
     } else {
       handleSelectTarget(cardId);

@@ -1,5 +1,5 @@
-import { Badge } from "../../../../../components/ui/Badge";
-import type { TPlayer } from "../../../../../store/game/game.types";
+import { Badge } from "../../../ui/Badge";
+import type { TPlayer } from "../../../../store/game/game.types";
 import cn from "clsx";
 
 interface Props {

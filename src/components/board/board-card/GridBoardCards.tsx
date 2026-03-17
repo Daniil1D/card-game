@@ -1,9 +1,9 @@
-import { MAX_BOARD_CARDS } from "../../../../constants/game/core.constants"; 
-import type { IGameCard } from "../../../../store/game/game.types";
+import { MAX_BOARD_CARDS } from "../../../constants/game/core.constants";
+import type { IGameCard } from "../../../store/game/game.types";
 import { BordCard } from "./BordCard";
-import { useSelectedHandCard } from "../../../../store/game/selected-hand-card.store";
-import { useGameStore } from "../../../../store/game/game.store";
-import { useSelectAttacker } from "../../../../store/game/select-attacker";
+import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
+import { useGameStore } from "../../../store/game/game.store";
+import { useSelectAttacker } from "../../../store/game/select-attacker";
 
 interface Props {
   deck?: IGameCard[];
@@ -11,19 +11,27 @@ interface Props {
   isPreviewRow?: boolean;
 }
 
-export function GridBoardCards({ deck = [], isPlayerSide, isPreviewRow }: Props) {
+export function GridBoardCards({
+  deck = [],
+  isPlayerSide,
+  isPreviewRow,
+}: Props) {
   const { selectedCardId, setSelectedCardId } = useSelectedHandCard();
   const { playCard } = useGameStore();
   const { cardAttackerId } = useSelectAttacker();
 
   const boardCards = deck
-    .filter(card => {
+    .filter((card) => {
       if (isPreviewRow) return card.previewBoardIndex !== undefined;
       return card.isOnBoard;
     })
     .sort((a, b) => {
-      const indexA = isPreviewRow ? a.previewBoardIndex ?? 0 : a.boardIndex ?? 0;
-      const indexB = isPreviewRow ? b.previewBoardIndex ?? 0 : b.boardIndex ?? 0;
+      const indexA = isPreviewRow
+        ? (a.previewBoardIndex ?? 0)
+        : (a.boardIndex ?? 0);
+      const indexB = isPreviewRow
+        ? (b.previewBoardIndex ?? 0)
+        : (b.boardIndex ?? 0);
       return indexA - indexB;
     });
 
@@ -36,7 +44,9 @@ export function GridBoardCards({ deck = [], isPlayerSide, isPreviewRow }: Props)
         <BordCard
           key={"board-" + index}
           card={boardCards.find((card) =>
-            isPreviewRow ? card.previewBoardIndex === index : card.boardIndex === index
+            isPreviewRow
+              ? card.previewBoardIndex === index
+              : card.boardIndex === index,
           )}
           isPlayerSide={isPlayerSide}
           boardIndex={index}
@@ -49,7 +59,9 @@ export function GridBoardCards({ deck = [], isPlayerSide, isPreviewRow }: Props)
           onPlaceCard={() => {
             if (
               !boardCards.find((card) =>
-                isPreviewRow ? card.previewBoardIndex === index : card.boardIndex === index
+                isPreviewRow
+                  ? card.previewBoardIndex === index
+                  : card.boardIndex === index,
               ) &&
               selectedCardId
             ) {

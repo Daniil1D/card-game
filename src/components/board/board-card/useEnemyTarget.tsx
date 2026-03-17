@@ -1,5 +1,6 @@
-import { useGameStore } from "../../../../store/game/game.store";
-import { useSelectAttacker } from "../../../../store/game/select-attacker";
+
+import { useGameStore } from "../../../store/game/game.store";
+import { useSelectAttacker } from "../../../store/game/select-attacker";
 
 export function useEnemyTarget() {
   const { attackHero, attackCard, currentTurn } = useGameStore();

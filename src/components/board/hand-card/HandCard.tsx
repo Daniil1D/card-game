@@ -1,8 +1,8 @@
 import { useState, type CSSProperties } from "react";
-import type { IGameCard } from "../../../../store/game/game.types";
+import type { IGameCard } from "../../../store/game/game.types";
 import cn from "clsx";
 import { motion } from "framer-motion";
-import { useSelectedHandCard } from "../../../../store/game/selected-hand-card.store";
+import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
 
 interface Props {
   card: IGameCard;

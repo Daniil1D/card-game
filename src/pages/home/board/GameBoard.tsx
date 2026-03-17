@@ -1,12 +1,12 @@
 import { useGameStore } from "../../../store/game/game.store";
-import { PlayerInfo } from "./player-info/PlayerInfo";
-import { HandCard } from "./hand-card/HandCard";
+import { PlayerInfo } from "../../../components/board/player-info/PlayerInfo";
+import { HandCard } from "../../../components/board/hand-card/HandCard";
 import { MAX_MANA } from "../../../constants/game/core.constants";
-import { PlayerMana } from "./player-info/mana/PlayerMana";
-import { AudioPlayer } from "./audi-player/AudioPlayer";
+import { PlayerMana } from "../../../components/board/player-info/mana/PlayerMana";
+import { AudioPlayer } from "../../../components/board/audi-player/AudioPlayer";
 import EndTurnButton from "./EndTurnButton";
 import { SectionSide } from "./SectionSide";
-import { GridBoardCards } from "./board-card/GridBoardCards";
+import { GridBoardCards } from "../../../components/board/board-card/GridBoardCards";
 import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
 import { DamageScale } from "./DamageScale";
 
@@ -21,12 +21,9 @@ export function GameBoard() {
 
   const { toggleSelectedCardId } = useSelectedHandCard();
 
-  const playerHand = [
-    ...player.deck,
-    ...player.squirrelDeck
-  ].filter(card => card.isOnHand)
-
-  // const opponentHand = opponent.deck.filter((card) => card.isOnHand);
+  const playerHand = [...player.deck, ...player.squirrelDeck].filter(
+    (card) => card.isOnHand,
+  );
 
   return (
     <div className="relative h-screen w-full">
@@ -39,20 +36,7 @@ export function GameBoard() {
             typePlayer="opponent"
           />
 
-          <DamageScale/>
-
-          {/* <div className="absolute -top-[8vh] w-full">
-            <div className="flex items-center justify-center">
-              {opponentHand.map((card, index, array) => (
-                <HandCard
-                  key={card.id}
-                  card={card}
-                  arrayLength={array.length}
-                  isHided
-                />
-              ))}
-            </div>
-          </div> */}
+          <DamageScale />
 
           <div className="flex gap-3 items-center justify-center">
             <GridBoardCards
@@ -94,7 +78,8 @@ export function GameBoard() {
                 drawFromMainDeck();
               }
             }}
-            className=" w-[90px] h-[140px] border-2  border-yellow-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg">
+            className=" w-[90px] h-[140px] border-2  border-yellow-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
+          >
             <img
               src="/assets/cards/cover2.png"
               className="w-full h-full object-cover"
@@ -107,7 +92,8 @@ export function GameBoard() {
                 drawFromSquirrelDeck();
               }
             }}
-            className="w-[90px] h-[140px] border-2  border-green-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg">
+            className="w-[90px] h-[140px] border-2  border-green-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
+          >
             <img
               src="/assets/cards/squirrel.png"
               className="w-full h-full object-cover"
@@ -117,7 +103,7 @@ export function GameBoard() {
 
         <div className="absolute -bottom-[5px] w-full">
           <div className="flex items-center justify-center">
-            {playerHand.map((card, index, array) => (
+            {playerHand.map((card, _, array) => (
               <HandCard
                 key={card.id}
                 card={card}
