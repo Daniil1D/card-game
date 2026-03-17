@@ -39,7 +39,7 @@ export function GameBoard() {
             typePlayer="opponent"
           />
 
-          <DamageScale />
+          <DamageScale/>
 
           {/* <div className="absolute -top-[8vh] w-full">
             <div className="flex items-center justify-center">

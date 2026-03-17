@@ -36,7 +36,11 @@ export const attackCardAction = (
 
     const targetHealthBefore = target.health;
 
-    target.health -= damage;
+    if (attacker.type === "poison") {
+      target.health = 0;
+    } else {
+      target.health -= damage;
+    }
 
     useDamageStore.getState().addDamage(targetId, damage);
 
@@ -98,6 +102,12 @@ export const attackCardAction = (
           );
         }
       }
+    }
+
+    const isKilled = targetHealthBefore > 0 && target.health <= 0;
+
+    if (isKilled && attacker.type === "berserk") {
+      attacker.attack += 1;
     }
 
     if (target.health <= 0) {

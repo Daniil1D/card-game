@@ -14,7 +14,7 @@ export function DamageScale() {
   const cells = Array.from({ length: max });
 
   return (
-    <div className="flex items-center justify-center gap-3 select-none">
+    <div className="flex items-center justify-center -mt-[50px] gap-3 select-none">
 
       <div className="flex gap-1">
         {cells.map((_, i) => (

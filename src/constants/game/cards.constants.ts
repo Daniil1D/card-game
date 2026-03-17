@@ -2,7 +2,7 @@ import type { ICard } from "../../types/card.types";
 
 export const CARDS: ICard[] = [
 
-  { name: "Peasant", mana: 1, attack: 1, health: 2, imageUrl: '/assets/cards/peasant.jpg' },
+  { name: "Peasant", mana: 1, attack: 1, health: 2, type: "shield", imageUrl: '/assets/cards/peasant.jpg' },
 
   { name: "Village Guard", mana: 2, attack: 1, health: 4, imageUrl: '/assets/cards/village-guard.png' },
 
@@ -18,7 +18,7 @@ export const CARDS: ICard[] = [
 
   { name: "Royal Guard", mana: 4, attack: 5, health: 6, imageUrl: '/assets/cards/royal-guard.png' },
 
-  { name: "Kingdom Hero", mana: 5, attack: 6, health: 7, type: "legendary", imageUrl: '/assets/cards/kingdom-hero.png' },
+  { name: "Kingdom Hero", mana: 5, attack: 6, health: 7, imageUrl: '/assets/cards/kingdom-hero.png' },
 
   { name: "Ant", mana: 1, attack: 1, health: 1, imageUrl: '/assets/cards/ant.png' },
 
@@ -36,7 +36,7 @@ export const CARDS: ICard[] = [
 
   { name: "Sparrow", mana: 2, attack: 1, health: 1, type: "flying", imageUrl: '/assets/cards/sparrow.png' },
 
-  { name: "Squirrel", mana: 0, attack: 0, health: 1, type:"sacrifice", imageUrl: '/assets/cards/squirrel.png' },
+  { name: "Squirrel", mana: 0, attack: 0, health: 1, imageUrl: '/assets/cards/squirrel.png' },
 
   { name: "Rat", mana: 2, attack: 2, health: 2, imageUrl: '/assets/cards/rat.png' },
 

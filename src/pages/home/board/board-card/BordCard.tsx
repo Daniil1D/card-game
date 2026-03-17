@@ -5,6 +5,7 @@ import { useEnemyTarget } from "./useEnemyTarget";
 import { useSelectAttacker } from "../../../../store/game/select-attacker";
 import { motion } from "framer-motion";
 import { DamageList } from "../DamageList";
+import { CardAbilityIcon } from "../../../../components/ui/card-ability-icon/CardAbilityIcon";
 
 interface Props {
   card?: IGameCard;
@@ -117,6 +118,7 @@ export function BordCard({
     >
       {card ? (
         <div className="relative w-full h-full">
+          <CardAbilityIcon type={card.type} />
           <img
             src={card.imageUrl}
             alt={card.name}
