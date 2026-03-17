@@ -1,32 +1,37 @@
 import type { IGameStore, IGameCard } from "../game.types";
 
 export const drawFromMainDeckAction = (state: IGameStore): Partial<IGameStore> => {
+
     if (state.hasDrawnThisTurn) {
         return state
     }
 
-    let cardDrawn = false
+    const deck = state.player.deck
 
-    const updatedDeck = state.player.deck.map((card: IGameCard) => {
+    if (deck.length === 0) {
+        return state
+    }
 
-        if (!card.isTaken && !card.isOnHand && !cardDrawn) {
-            cardDrawn = true
+    const randomIndex = Math.floor(Math.random() * deck.length)
 
-            return {
-                ...card,
-                isTaken: true,
-                isOnHand: true
-            }
-        }
+    const templateCard = deck[randomIndex]
 
-        return card
-    })
+    const newCard: IGameCard = {
+        ...templateCard,
+        id: crypto.randomUUID(),
+        isOnHand: true,
+        isOnBoard: false,
+        isPlayedThisTurn: false,
+        isCanAttack: false
+    }
 
     return {
         player: {
             ...state.player,
-
-            deck: updatedDeck
+            deck: [
+                ...state.player.deck,
+                newCard
+            ]
         },
         hasDrawnThisTurn: true
     }

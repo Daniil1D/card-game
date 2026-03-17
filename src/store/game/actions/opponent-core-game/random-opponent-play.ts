@@ -3,8 +3,11 @@ import { attackCardAction } from "../attack-card";
 import { PlayRandomCard } from "./play-random-card";
 import { MAX_MANA } from "../../../../constants/game/core.constants";
 import { attackHeroAction } from "../attack-hero";
+import { drawCardsAction } from "../draw-cards";
+
 
 export const randomOpponentPlay = (state: IGameStore) => {
+  const { updatedDeck } = drawCardsAction(state.opponent);
   const opponent = state.opponent;
 
   opponent.deck
@@ -55,6 +58,7 @@ export const randomOpponentPlay = (state: IGameStore) => {
     opponent: {
       ...state.opponent,
       mana: 0,
+      deck: updatedDeck
     },
   };
 };

@@ -36,7 +36,7 @@ export const CARDS: ICard[] = [
 
   { name: "Sparrow", mana: 2, attack: 1, health: 1, type: "flying", imageUrl: '/assets/cards/sparrow.png' },
 
-  { name: "Squirrel", mana: 1, attack: 2, health: 1, imageUrl: '/assets/cards/squirrel.png' },
+  { name: "Squirrel", mana: 1, attack: 2, health: 1, type:"sacrifice", imageUrl: '/assets/cards/squirrel.png' },
 
   { name: "Rat", mana: 2, attack: 2, health: 2, imageUrl: '/assets/cards/rat.png' },
 
@@ -83,7 +83,5 @@ export const CARDS: ICard[] = [
   { name: "Giant Spider", mana: 5, attack: 5, health: 4, type: "spawn", imageUrl: '/assets/cards/giant-spider.png' },
 
   { name: "Scorpion", mana: 3, attack: 5, health: 3, type: "spawn", imageUrl: '/assets/cards/scorpion.png' },
-
-  // { name: "Sacrificial Creature", mana: 0, attack: 0, health: 1, type: "sacrifice", imageUrl: '/assets/cards/sacrificial-creature.png' },
 
 ];
