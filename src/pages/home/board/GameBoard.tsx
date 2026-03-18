@@ -6,9 +6,9 @@ import { PlayerMana } from "../../../components/board/player-info/mana/PlayerMan
 import { AudioPlayer } from "../../../components/board/audi-player/AudioPlayer";
 import EndTurnButton from "./EndTurnButton";
 import { SectionSide } from "./SectionSide";
-import { GridBoardCards } from "../../../components/board/board-card/GridBoardCards";
 import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
 import { DamageScale } from "./DamageScale";
+import { GridBoardCards } from "../../../components/board/board-card/GridBoardCards";
 
 export function GameBoard() {
   const {
@@ -37,6 +37,19 @@ export function GameBoard() {
           />
 
           <DamageScale />
+
+          {/* <div className="absolute -top-[8vh] w-full">
+            <div className="flex items-center justify-center">
+              {opponentHand.map((card, index, array) => (
+                <HandCard
+                  key={card.id}
+                  card={card}
+                  arrayLength={array.length}
+                  isHided
+                />
+              ))}
+            </div>
+          </div> */}
 
           <div className="flex gap-3 items-center justify-center">
             <GridBoardCards
@@ -81,7 +94,7 @@ export function GameBoard() {
             className=" w-[90px] h-[140px] border-2  border-yellow-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
           >
             <img
-              src="/assets/cards/cover2.png"
+              src="/assets/cards/cover.png"
               className="w-full h-full object-cover"
             />
           </button>

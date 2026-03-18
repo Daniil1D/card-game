@@ -1,9 +1,11 @@
 import { MAX_BOARD_CARDS } from "../../../constants/game/core.constants";
-import type { IGameCard } from "../../../store/game/game.types";
-import { BordCard } from "./BordCard";
-import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
 import { useGameStore } from "../../../store/game/game.store";
+import type { IGameCard } from "../../../store/game/game.types";
 import { useSelectAttacker } from "../../../store/game/select-attacker";
+import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
+import { BordCard } from "./BordCard";
+
+
 
 interface Props {
   deck?: IGameCard[];

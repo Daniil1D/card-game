@@ -1,11 +1,12 @@
-import { useGameStore } from "../../../store/game/game.store";
-import type { IGameCard } from "../../../store/game/game.types";
 import cn from "clsx";
 import { useEnemyTarget } from "./useEnemyTarget";
-import { useSelectAttacker } from "../../../store/game/select-attacker";
 import { motion } from "framer-motion";
-import { DamageList } from "../../../pages/home/board/DamageList";
+import type { IGameCard } from "../../../store/game/game.types";
+import { useGameStore } from "../../../store/game/game.store";
+import { useSelectAttacker } from "../../../store/game/select-attacker";
 import { CardAbilityIcon } from "../../ui/card-ability-icon/CardAbilityIcon";
+import { DamageList } from "../../../pages/home/board/DamageList";
+
 
 interface Props {
   card?: IGameCard;
