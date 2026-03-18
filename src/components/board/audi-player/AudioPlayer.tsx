@@ -19,7 +19,7 @@ export function AudioPlayer() {
 
   return (
     <Button
-      className="absolute right-9 bottom-20 z-10"
+      className="absolute right-3 bottom-14 sm:right-6 sm:bottom-16 md:right-9 md:bottom-20 z-10"
       variant="gray"
       isCircle
       onClick={hendlePlayPause}

@@ -1,3 +1,5 @@
+// 📁 src/components/board/board-card/BordCard.tsx
+
 import cn from "clsx";
 import { useEnemyTarget } from "./useEnemyTarget";
 import { motion } from "framer-motion";
@@ -6,7 +8,6 @@ import { useGameStore } from "../../../store/game/game.store";
 import { useSelectAttacker } from "../../../store/game/select-attacker";
 import { CardAbilityIcon } from "../../ui/card-ability-icon/CardAbilityIcon";
 import { DamageList } from "../../../pages/home/board/DamageList";
-
 
 interface Props {
   card?: IGameCard;
@@ -74,23 +75,26 @@ export function BordCard({
       onContextMenu={(e) => handleRightClick(e, card?.id)}
       className={
         card
-          ? cn("w-[100px] h-[160px] rounded-lg relative overflow-hidden", {
-              "border-red-500 shadow-[0_0_20px_#ef4444] border-2":
-                isAttackTarget && !isPlayerSide,
-              "border-2 border-solid transition-colors":
-                isPlayerSide && currentTurn === "player",
-              "border-transparent": !card.isCanAttack,
-              "cursor-pointer border-green-400":
-                card.isCanAttack &&
-                !isPlayerSelectAttacker &&
-                isPlayerSide &&
-                currentTurn === "player",
-              "border-primary shadow-[0_0_20px_#22c55e]":
-                isPlayerSelectAttacker,
-            })
+          ? cn(
+              "w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px] rounded-lg relative overflow-hidden", // 🔥 АДАПТИВ
+              {
+                "border-red-500 shadow-[0_0_20px_#ef4444] border-2":
+                  isAttackTarget && !isPlayerSide,
+                "border-2 border-solid transition-colors":
+                  isPlayerSide && currentTurn === "player",
+                "border-transparent": !card.isCanAttack,
+                "cursor-pointer border-green-400":
+                  card.isCanAttack &&
+                  !isPlayerSelectAttacker &&
+                  isPlayerSide &&
+                  currentTurn === "player",
+                "border-primary shadow-[0_0_20px_#22c55e]":
+                  isPlayerSelectAttacker,
+              }
+            )
           : cn(
               `
-            w-[100px] h-[160px]
+            w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px]  // 🔥 АДАПТИВ
             border-2 
             rounded-lg
             border-yellow-500
@@ -99,9 +103,8 @@ export function BordCard({
             `,
               {
                 "border-green-400 bg-green-900/20 cursor-pointer": canPlaceCard,
-
                 "border-yellow-500": !canPlaceCard,
-              },
+              }
             )
       }
       {...(card ? { whileHover: { scale: 1.08 } } : {})}
@@ -112,7 +115,6 @@ export function BordCard({
           : { scale: 1, rotate: 0, y: 0, opacity: 1 }
       }
       transition={{ type: "spring", stiffness: 150, mass: 1 }}
-      // transition={{ type: 'spring', stiffness: 150, demping: 20, mass: 1 }}
     >
       {card ? (
         <div className="relative w-full h-full">
@@ -142,67 +144,15 @@ export function BordCard({
               bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.65)_100%)]
             "
           />
-          <div
-            className="
-          absolute
-          top-[10px]
-          left-[10.2px]
-          w-[13.7px]
-          h-[13.7px]
-          rounded-full
-          bg-[#031d6b]
-          text-white
-          flex
-          items-center
-          justify-center
-          text-xs
-          font-bold
-          z-20
-        "
-          >
+          <div className="absolute top-[10px] left-[10.2px] w-[13.7px] h-[13.7px] rounded-full bg-[#031d6b] text-white flex items-center justify-center text-xs font-bold z-20">
             {card.mana}
           </div>
 
-          <div
-            className="
-        absolute
-        bottom-[21px]
-        left-[11px]
-        w-3.5
-        h-3.5
-        rounded-full
-        bg-[#835804]
-        text-white
-        flex
-        items-center
-        justify-center
-        text-xs
-        font-bold
-        shadow-2xl
-        z-20
-      "
-          >
+          <div className="absolute bottom-[21px] left-[11px] w-3.5 h-3.5 rounded-full bg-[#835804] text-white flex items-center justify-center text-xs font-bold shadow-2xl z-20">
             {card.attack}
           </div>
 
-          <div
-            className="
-        absolute
-        bottom-[21px]
-        right-[9.8px]
-        w-3.5
-        h-3.5
-        rounded-full
-        bg-[#830f04]
-        text-white
-        flex
-        items-center
-        justify-center
-        text-xs
-        font-bold
-        z-20
-      "
-          >
+          <div className="absolute bottom-[21px] right-[9.8px] w-3.5 h-3.5 rounded-full bg-[#830f04] text-white flex items-center justify-center text-xs font-bold z-20">
             {card.health}
           </div>
         </div>

@@ -37,7 +37,7 @@ export function HandCard({
   return (
     <motion.button
       className={cn(
-        "h-36 w-24 inline-block rounded-lg will-change-transform relative overflow-hidden",
+        "h-[90px] w-[60px] sm:h-[120px] sm:w-[80px] md:h-36 md:w-24 inline-block rounded-lg will-change-transform relative overflow-hidden",
         {
           shadow: !isHided,
           "cursor-pointer": !isHided && !isDisabled,

@@ -22,7 +22,7 @@ export function PlayerInfo({ typePlayer }: Props) {
       onClick={() => (isPlayer ? null : handleSelectTarget(undefined, true))}
     >
       <img
-        width={200}
+        className="w-[120px] sm:w-[150px] md:w-[200px]" // 🔥 адаптив
         src={
           isPlayer ? "assets/heroes/player.png" : "assets/heroes/opponent.png"
         }

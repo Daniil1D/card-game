@@ -21,7 +21,7 @@ export function DamageScale() {
           <div
             key={`o-${i}`}
             className={cn(
-              "w-4 h-4 border border-yellow-500",
+              "w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 border border-yellow-500",
               {
                 "bg-yellow-400": i < opponentSide
               }
@@ -30,7 +30,7 @@ export function DamageScale() {
         ))}
       </div>
 
-      <div className="text-2xl">
+      <div className="text-lg sm:text-xl md:text-2xl">
         ⚖️
       </div>
 

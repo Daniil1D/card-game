@@ -84,14 +84,15 @@ export function GameBoard() {
 
         <AudioPlayer />
 
-        <div className="flex justify-start gap-6 absolute left-[250px]">
+        <div
+          className="absolute left-[200px] -translate-x-1/2bottom-[140px]flex gap-3 sm:gap-4 md:gap-">
           <button
             onClick={() => {
               if (currentTurn === "player") {
                 drawFromMainDeck();
               }
             }}
-            className=" w-[90px] h-[140px] border-2  border-yellow-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
+            className="w-[60px] h-[90px] sm:w-[75px] sm:h-[115px] md:w-[90px] md:h-[140px] rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
           >
             <img
               src="/assets/cards/cover.png"
@@ -105,7 +106,7 @@ export function GameBoard() {
                 drawFromSquirrelDeck();
               }
             }}
-            className="w-[90px] h-[140px] border-2  border-green-500 rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
+            className="w-[60px] h-[90px] sm:w-[75px] sm:h-[115px] md:w-[90px] md:h-[140px] rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
           >
             <img
               src="/assets/cards/squirrel.png"
