@@ -42,4 +42,8 @@ export interface IGameStore extends IGameFnStore {
     damageBalance: number
     drawCountThisTurn: number
     sacrificedThisTurn: boolean
+    phase: 1 | 2
+
+    opponentAbility: "stealCard" | "boardControl" | null
+    opponentAbilityUsed: boolean
 }

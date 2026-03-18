@@ -9,6 +9,7 @@ import { SectionSide } from "./SectionSide";
 import { useSelectedHandCard } from "../../../store/game/selected-hand-card.store";
 import { DamageScale } from "./DamageScale";
 import { GridBoardCards } from "../../../components/board/board-card/GridBoardCards";
+import { OpponentAbilityBadge } from "../../../components/board/opponent-ability-badge/OpponentAbilityBadge";
 
 export function GameBoard() {
   const {
@@ -28,6 +29,7 @@ export function GameBoard() {
   return (
     <div className="relative h-screen w-full">
       <SectionSide isPlayer={false}>
+        <OpponentAbilityBadge />
         <div>
           <PlayerInfo player={opponent} typePlayer="opponent" />
           <PlayerMana

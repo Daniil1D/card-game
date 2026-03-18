@@ -24,18 +24,6 @@ export const randomOpponentPlay = (state: IGameStore) => {
     .filter((card) => card.isOnBoard)
     .forEach((card) => {
 
-      if (!state.player.deck.filter((card) => card.isOnBoard).length) {
-
-        const heroAttackResult = attackHeroAction(state, card.id)
-
-        state = {
-          ...state,
-          ...heroAttackResult
-        }
-
-        return;
-      }
-
       const target = state.player.deck.find(
         (playerCard) =>
           playerCard.isOnBoard &&
@@ -43,7 +31,6 @@ export const randomOpponentPlay = (state: IGameStore) => {
       );
 
       if (target) {
-
         const attackResult = attackCardAction(state, card.id, target.id)
 
         state = {
@@ -51,28 +38,24 @@ export const randomOpponentPlay = (state: IGameStore) => {
           ...attackResult
         }
 
-      } else {
+        return;
+      }
 
-        const heroAttackResult = attackHeroAction(state, card.id)
+      const heroAttackResult = attackHeroAction(state, card.id)
 
-        state = {
-          ...state,
-          ...heroAttackResult
-        }
-
+      state = {
+        ...state,
+        ...heroAttackResult
       }
     });
 
   let mana = opponent.mana;
-
   let iterations = 0;
 
   while (mana > 0 && iterations <= MAX_MANA) {
-
     const newState = PlayRandomCard(state, mana);
 
     mana = newState.opponent.mana;
-
     state = { ...state, ...newState };
 
     iterations++;

@@ -7,15 +7,20 @@ export const PlayRandomCard = (
   mana: number
 ) => {
 
-  const playableCards = state.opponent.deck.filter(
+  let playableCards = state.opponent.deck.filter(
     card => card.isOnHand && card.mana <= mana
   );
 
+  if (state.phase === 2) {
+    playableCards = playableCards.sort((a, b) => b.attack - a.attack)
+  }
+
   if (playableCards.length === 0) return state;
 
-  const randomIndex = random(playableCards.length - 1);
-
-  const randomCard = playableCards[randomIndex];
+  const randomCard =
+    state.phase === 2
+      ? playableCards[0]
+      : playableCards[random(playableCards.length - 1)];
 
   const previewCards = state.opponent.deck.filter(
     card => card.previewBoardIndex !== undefined

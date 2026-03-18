@@ -28,6 +28,9 @@ const getFirstCards = (
 }
 
 export const startGameAction = (): Partial<IGameStore> => {
+    
+    const abilities = ["stealCard", "boardControl"] as const
+    const randomAbility = abilities[Math.floor(Math.random() * abilities.length)]
 
     const playerInitialDeck = shuffle(createDeck('player'));
     const playerSquirrelDeck = createSquirrelDeck('player');
@@ -37,6 +40,9 @@ export const startGameAction = (): Partial<IGameStore> => {
 
     return { 
         ...initiaGameData,
+        opponentAbility: randomAbility,
+        opponentAbilityUsed: false,
+
         player: { 
             ...initiaGameData.player, 
             deck: playerCards.deck,

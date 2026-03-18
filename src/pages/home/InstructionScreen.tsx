@@ -38,7 +38,7 @@ export function InstructionScreen({ onBack }: Props) {
         <p className="mt-6 font-bold text-base sm:text-lg md:text-xl">🔄 Ход игрока</p>
 
         <ul className="list-disc ml-6">
-          <li>Ты можешь взять 1 карту (слева)</li>
+          <li>Ты можешь взять 2 карту (слева)</li>
           <li>Сыграть карты на поле</li>
           <li>Атаковать</li>
           <li>Закончить ход</li>
