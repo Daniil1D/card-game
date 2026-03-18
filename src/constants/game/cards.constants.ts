@@ -2,7 +2,7 @@ import type { ICard } from "../../types/card.types";
 
 export const CARDS: ICard[] = [
 
-  { name: "Peasant", mana: 1, attack: 1, health: 2, type: "shield", imageUrl: '/assets/cards/Peasant.jpg' },
+  { name: "Peasant", mana: 1, attack: 1, health: 2, imageUrl: '/assets/cards/Peasant1.jpg' },
 
   { name: "Village Guard", mana: 2, attack: 1, health: 4, imageUrl: '/assets/cards/Village-guard.jpg' },
 
