@@ -40,6 +40,6 @@ export interface IGameStore extends IGameFnStore {
     attackingCardId: string | null
     setAttackingCardId: (id: string | null) => void
     damageBalance: number
-    hasDrawnThisTurn: boolean
+    drawCountThisTurn: number
     sacrificedThisTurn: boolean
 }

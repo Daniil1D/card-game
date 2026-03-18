@@ -64,7 +64,7 @@ export const endTurnAction = (state: IGameStore): Partial<IGameStore> => {
 
     return {
         ...updatedState,
-        hasDrawnThisTurn: false,
+        drawCountThisTurn: 0,
 
         sacrificedThisTurn: false
     }

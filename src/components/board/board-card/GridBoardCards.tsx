@@ -1,5 +1,3 @@
-// 📁 src/components/board/board-card/GridBoardCards.tsx
-
 import { MAX_BOARD_CARDS } from "../../../constants/game/core.constants";
 import { useGameStore } from "../../../store/game/game.store";
 import type { IGameCard } from "../../../store/game/game.types";
@@ -44,11 +42,11 @@ export function GridBoardCards({
     <div
       className="
         flex 
-        flex-wrap                 /* 🔥 перенос строк */
-        gap-1 sm:gap-2 md:gap-3  /* 🔥 адаптивный gap */
+        flex-wrap                
+        gap-1 sm:gap-2 md:gap-3 
         items-center 
         justify-center
-        max-w-full               /* 🔥 не вылазим */
+        max-w-full             
       "
     >
       {Array.from({ length: MAX_BOARD_CARDS }).map((_, index) => (

@@ -84,4 +84,9 @@ export const CARDS: ICard[] = [
 
   { name: "Scorpion", mana: 3, attack: 5, health: 3, type: "spawn", imageUrl: '/assets/cards/scorpion.png' },
 
+  { name: "Stone", mana: 1, attack: 0, health: 6, type: "spawn", imageUrl: '/assets/cards/stone.png' },
+  { name: "Tree", mana: 1, attack: 0, health: 5, type: "spawn", imageUrl: '/assets/cards/tree.png' },
+  { name: "Goat", mana: 2, attack: 0, health: 3, type: "spawn", imageUrl: '/assets/cards/goat.png' },
+  { name: "Chariot", mana: 4, attack: 0, health: 4, type: "spawn", imageUrl: '/assets/cards/chariot.png' },
+
 ];

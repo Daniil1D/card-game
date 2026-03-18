@@ -1,5 +1,3 @@
-// 📁 src/pages/home/InstructionScreen.tsx
-
 import { Button } from "../../components/ui/button/Button";
 import { Heading } from "../../components/ui/heading/Heading";
 

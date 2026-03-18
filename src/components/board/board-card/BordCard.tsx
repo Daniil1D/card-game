@@ -1,5 +1,3 @@
-// 📁 src/components/board/board-card/BordCard.tsx
-
 import cn from "clsx";
 import { useEnemyTarget } from "./useEnemyTarget";
 import { motion } from "framer-motion";
@@ -76,7 +74,7 @@ export function BordCard({
       className={
         card
           ? cn(
-              "w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px] rounded-lg relative overflow-hidden", // 🔥 АДАПТИВ
+              "w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px] rounded-lg relative overflow-hidden",
               {
                 "border-red-500 shadow-[0_0_20px_#ef4444] border-2":
                   isAttackTarget && !isPlayerSide,
@@ -94,7 +92,7 @@ export function BordCard({
             )
           : cn(
               `
-            w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px]  // 🔥 АДАПТИВ
+            w-[70px] h-[110px] sm:w-[85px] sm:h-[135px] md:w-[100px] md:h-[160px] 
             border-2 
             rounded-lg
             border-yellow-500

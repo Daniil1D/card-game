@@ -2,7 +2,7 @@ import type { IGameStore, IGameCard } from "../game.types";
 
 export const drawFromSquirrelDeckAction = (state: IGameStore): Partial<IGameStore> => {
 
-    if (state.hasDrawnThisTurn) {
+    if (state.drawCountThisTurn >= 2) {
         return state
     }
 
@@ -30,6 +30,6 @@ export const drawFromSquirrelDeckAction = (state: IGameStore): Partial<IGameStor
                 newSquirrel
             ]
         },
-        hasDrawnThisTurn: true
+        drawCountThisTurn: state.drawCountThisTurn + 1
     }
 }

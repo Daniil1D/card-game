@@ -1,5 +1,3 @@
-// 📁 src/pages/home/WelcomeScreen.tsx
-
 import { useState, useTransition } from "react";
 import { Button } from "../../components/ui/button/Button";
 import { Heading } from "../../components/ui/heading/Heading";

@@ -44,43 +44,39 @@ h1 {
   line-height: 1.1;
 }
 
-/* === 🔥 АДАПТИВ: ПЛАНШЕТ === */
 @media (max-width: 1024px) {
   html {
-    font-size: 16px; /* уменьшили базовый размер */
+    font-size: 16px;
   }
 
   body {
-    overflow: hidden; /* важно для игры */
+    overflow: hidden;
   }
 
-  /* Уменьшаем масштаб всей игры */
   #root {
-    transform: scale(0.9); /* 🔥 изменение */
+    transform: scale(0.9);
     transform-origin: top center;
   }
 }
 
-/* === 📱 АДАПТИВ: МОБИЛКА === */
 @media (max-width: 768px) {
   html {
-    font-size: 14px; /* ещё меньше */
+    font-size: 14px;
   }
 
   #root {
-    transform: scale(0.75); /* 🔥 сильнее уменьшаем */
+    transform: scale(0.75);
     transform-origin: top center;
   }
 }
 
-/* === 📱 МАЛЕНЬКИЕ ТЕЛЕФОНЫ === */
 @media (max-width: 480px) {
   html {
     font-size: 12px;
   }
 
   #root {
-    transform: scale(0.65); /* 🔥 ультра-компакт */
+    transform: scale(0.65);
     transform-origin: top center;
   }
 }

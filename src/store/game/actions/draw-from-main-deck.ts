@@ -2,7 +2,7 @@ import type { IGameStore, IGameCard } from "../game.types";
 
 export const drawFromMainDeckAction = (state: IGameStore): Partial<IGameStore> => {
 
-    if (state.hasDrawnThisTurn) {
+    if (state.drawCountThisTurn >= 2) {
         return state
     }
 
@@ -33,6 +33,6 @@ export const drawFromMainDeckAction = (state: IGameStore): Partial<IGameStore> =
                 newCard
             ]
         },
-        hasDrawnThisTurn: true
+        drawCountThisTurn: state.drawCountThisTurn + 1
     }
 }

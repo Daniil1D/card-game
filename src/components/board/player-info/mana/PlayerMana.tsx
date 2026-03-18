@@ -24,7 +24,7 @@ export function PlayerMana({ currentMana, maxMana, typePlayer }: Props) {
           <div
             key={index}
             className={cn(
-              "w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 bg-gradient-to-t from-sky-900 rounded-full mx-1 shadow-inner", // 🔥 адаптив
+              "w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 bg-gradient-to-t from-sky-900 rounded-full mx-1 shadow-inner",
               index < currentMana ? "to-sky-400" : "to-sky-950",
             )}
           />
