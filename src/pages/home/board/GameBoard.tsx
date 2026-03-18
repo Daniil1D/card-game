@@ -87,7 +87,7 @@ export function GameBoard() {
         <AudioPlayer />
 
         <div
-          className="absolute left-[200px] -translate-x-1/2bottom-[140px]flex gap-3 sm:gap-4 md:gap-">
+          className="absolute left-[200px] z-30 -translate-x-1/2bottom-[140px]flex gap-3 sm:gap-4 md:gap-">
           <button
             onClick={() => {
               if (currentTurn === "player") {
