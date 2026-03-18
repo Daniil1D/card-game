@@ -111,7 +111,7 @@ export function GameBoard() {
             className="w-[60px] h-[90px] sm:w-[75px] sm:h-[115px] md:w-[90px] md:h-[140px] rounded-lg overflow-hidden hover:scale-105 transition shadow-lg"
           >
             <img
-              src="/assets/cards/squirrel.png"
+              src="/assets/cards/Squirrel.jpg"
               className="w-full h-full object-cover"
             />
           </button>

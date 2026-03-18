@@ -9,7 +9,7 @@ export const drawFromSquirrelDeckAction = (state: IGameStore): Partial<IGameStor
     const newSquirrel: IGameCard = {
         id: crypto.randomUUID(),
         name: "Squirrel",
-        imageUrl: "/assets/cards/squirrel.png",
+        imageUrl: "/assets/cards/Squirrel.jpg",
         attack: 0,
         health: 1,
         mana: 0,
