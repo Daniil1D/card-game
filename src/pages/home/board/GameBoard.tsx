@@ -26,6 +26,8 @@ export function GameBoard() {
     (card) => card.isOnHand,
   );
 
+  // const opponentHand = opponent.deck.filter((card) => card.isOnHand);
+
   return (
     <div className="relative h-screen w-full">
       <SectionSide isPlayer={false}>
@@ -42,7 +44,7 @@ export function GameBoard() {
 
           {/* <div className="absolute -top-[8vh] w-full">
             <div className="flex items-center justify-center">
-              {opponentHand.map((card, index, array) => (
+              {opponentHand.map((card, _, array) => (
                 <HandCard
                   key={card.id}
                   card={card}

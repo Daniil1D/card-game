@@ -1,15 +1,15 @@
 import type { IGameFnStore, IGameStore, IHero } from "./game.types"
 
 export const initialPlayerData: IHero = {
-    health: 20,
+    health: 15,
     mana: 1,
     deck: [],
     squirrelDeck: []
 }
 
 export const initiaGameData: Omit<IGameStore, keyof IGameFnStore> = {
-    player: initialPlayerData,
-    opponent: initialPlayerData,
+    player: {...initialPlayerData},
+    opponent: {...initialPlayerData},
     currentTurn: "opponent",
     isGameOver: false,
     isGameStarted: true,

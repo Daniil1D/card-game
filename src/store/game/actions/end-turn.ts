@@ -3,7 +3,12 @@ import { useNotificationStore } from "../../notification/notification.store";
 import type { IGameCard, IGameStore, TPlayer } from "../game.types";
 
 const getNewMana = (currentTurn: number) => {
-    return Math.min(currentTurn, MAX_MANA) 
+
+    const maxMana = MAX_MANA;
+
+    const mana = currentTurn % maxMana;
+
+    return mana === 0 ? maxMana : mana;
 }
 
 const updateCardOnTheEndTurn = (deck: IGameCard[]) => deck.map(card => ({

@@ -1,8 +1,8 @@
 import type { IGameStore } from "../../game.types";
-import { attackCardAction } from "../attack-card";
+import { attackCardAction } from "../attack-card/attack-card";
 import { PlayRandomCard } from "./play-random-card";
 import { MAX_MANA } from "../../../../constants/game/core.constants";
-import { attackHeroAction } from "../attack-hero";
+import { attackHeroAction } from "../attack-hero/attack-hero";
 
 function drawOneCardForOpponent(state: IGameStore) {
   const deck = state.opponent.deck;

@@ -3,11 +3,21 @@ import type { IGameCard, TPlayer } from "../../game.types";
 
 export function createDeck(typePlayer: TPlayer): IGameCard[] {
 
-    const mainCards = CARDS.filter(card => card.name !== "Squirrel")
+    const mainCards = CARDS.filter(card => {
+        if (card.name === "Squirrel") return false;
+
+        if (card.name === "Goat") return false
+
+        if (typePlayer === 'player' && card.name === "Chariot") {
+            return false;
+        }
+
+        return true;
+    });
 
     return mainCards.map((card, index) => ({
         ...card,
-        id: index + 1 + '_' + typePlayer,
+        id: index + 1 + '_' + typePlayer, 
         isTaken: false,
         isOnHand: false,
         isOnBoard: false,
